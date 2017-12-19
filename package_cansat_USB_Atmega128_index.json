@@ -1,0 +1,45 @@
+{
+  "packages": [
+    {
+      "name": "CanSat ",
+      "maintainer": "SatRec",
+      "websiteURL": "https://github.com/cchamchi/cansat",
+      "email": "",
+      "help": {
+        "online": "https://github.com/cchamchi/cansat"
+      },
+      "platforms": [
+        {
+          "name": "Cansat(USB Atmega128 11M)",
+          "architecture": "avr",
+          "version": "0.1.0",
+          "category": "Contributed",
+          "help": {
+            "online": ""
+          },
+          "url": "https://github.com/thomasonw/ATmegaxxM1-C1/raw/gh-pages/ATmegaxxM1-C1-1.0.3.tar.gz",
+          "archiveFileName": "ATmegaxxM1-C1-1.0.3.tar.gz",
+          "checksum": "SHA-256:765FF255379D4B2E8FCD62DA28E807EE1AC7AF92D01856E7FC3D23B5A474ED22",
+          "size": "102816",
+          "boards": [
+            {"name": "ATmega32M1"},
+            {"name": "ATmega64M1"}
+          ],
+          "toolsDependencies": [
+            {
+              "packager": "arduino",
+              "name": "avr-gcc",
+              "version": "4.8.1-arduino5"
+            },
+            {
+              "packager": "arduino",
+              "name": "avrdude",
+              "version": "6.0.1-arduino5"
+            }
+          ]
+        }
+      ],
+      "tools": []
+    }
+  ]
+}
