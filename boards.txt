@@ -23,7 +23,7 @@ atmega128.bootloader.lock_bits=0x0F
 atmega128.build.mcu=atmega128
 atmega128.build.f_cpu=11059200L
 atmega128.build.board=AVR_ATMEGA128
-atmega128.build.core=arduino
+atmega128.build.core=arduino:arduino
 atmega128.build.variant=cansat
 
 ###################################################
@@ -42,18 +42,18 @@ atmega128a.bootloader.lock_bits=0x0F
 atmega128a.build.mcu=atmega128
 atmega128a.build.f_cpu=16000000L
 atmega128a.build.board=AVR_ATMEGA128
-atmega128a.build.core=arduino
+atmega128a.build.core=arduino:arduino
 atmega128a.build.variant=standard
 
 ###################################################
 atmega128b.name=Cansat(USB Atmega128 11M)
-atmega128b.upload.using=avrdude
-atmega128b.upload.tool=avrdude
+atmega128b.upload.using=arduino:avrdude
+atmega128b.upload.tool=arduino:avrdude
 atmega128b.upload.protocol=arduino
 atmega128b.upload.speed=115200
 atmega128b.upload.maximum_size=126976
 
-atmega128b.bootloader.tool=avrdude
+atmega128b.bootloader.tool=arduino:avrdude
 atmega128b.bootloader.low_fuses=0xFF
 atmega128b.bootloader.high_fuses=0xCA
 atmega128b.bootloader.extended_fuses=0xFF
@@ -65,7 +65,7 @@ atmega128b.bootloader.lock_bits=0x0F
 atmega128b.build.mcu=atmega128
 atmega128b.build.f_cpu=11059200L
 atmega128b.build.board=AVR_ATMEGA128
-atmega128b.build.core=arduino
+atmega128b.build.core=arduino:arduino
 atmega128b.build.variant=cansat
 
 
