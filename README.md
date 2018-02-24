@@ -17,4 +17,7 @@ shasum -a 256 filename
 #File Size
 stat -f '%z' filename
 
+#MUST to match library.properties version info package version
+
+
 
