@@ -8,6 +8,7 @@ https://github.com/cchamchi/arduinoPackages/releases/download/index/package_cans
 
 #Reference 
 To make package index json
+
 https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.6.x-package_index.json-format-specification
 
 #Checksum at MacOSX
