@@ -1,7 +1,6 @@
 /**
  * @file       VC0703.cpp
  * @author     Dongwon Lee
- * @license    This project is released under the MIT License (MIT)
  * @copyright  Copyright (c) 2018 Dongwon Lee
  * @date       Feb 2018
  * @brief      This is a library for the Cansat JPEG Camera (VC0703 chipset)
@@ -391,7 +390,7 @@ void VC0703::sendCommand(uint8_t cmd, uint8_t args[] = 0, uint8_t argn = 0) {
       //Serial.print(args[i], HEX);
     }
 #endif
-  
+
 //Serial.println();
 }
 

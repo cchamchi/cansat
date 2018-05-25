@@ -46,7 +46,6 @@
 /**
  * @file       CansatGPS_NMEA.h
  * @author     Dongwon Lee
- * @license    This project is released under the MIT License (MIT)
  * @copyright  Copyright (c) 2018 Dongwon Lee
  * @date       April 2018
  * @brief     modified vesion of AP_GPS_NMEA.h

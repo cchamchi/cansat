@@ -1,7 +1,21 @@
+/*
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * @file       CansatIMU.h
  * @author     Dongwon Lee
- * @license    This project is released under the MIT License (MIT)
  * @copyright  Copyright (c) 2018 Dongwon Lee
  * @date       Feb 2018
  * @brief
@@ -31,17 +45,21 @@
      void begin() {
          this->stream.begin(115200);
      }
-     void read(float *buf){
+     bool read(float *buf){
          this->stream.RxModePortSet(RxMode_IMU_PORT);
          if(this->stream.available()){
              this->stream.read(_imu_data,IMU_DATA_SIZE);
              parsingAccelgyro(buf);
+             return true;
+         }else{
+           return false;
          }
      }
 
      int connected() { return this->conn && this->stream; }
      int available() { return this->stream.available(); }
    private:
+
      void parsingAccelgyro(float *buf){
        char *tokenFrame = NULL;
        char *token =NULL;
