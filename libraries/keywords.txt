@@ -17,6 +17,10 @@ WidgetMap	KEYWORD1
 WidgetTable	KEYWORD1
 CanSatParam	KEYWORD1
 CanSatParamAllocated	KEYWORD1
+CansatSystemInit KEYWORD1
+cansatIMU       KEYWORD1
+cansatBT       KEYWORD1
+cansatGPS      KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -34,6 +38,10 @@ virtualWriteBinary	KEYWORD2
 syncAll	KEYWORD2
 syncVirtual	KEYWORD2
 setProperty	KEYWORD2
+location      KEYWORD2
+num_sats     KEYWORD2
+ground_speed_km  KEYWORD2
+ground_course   KEYWORD2
 
 # Handler helpers
 CANSAT_READ	KEYWORD2
