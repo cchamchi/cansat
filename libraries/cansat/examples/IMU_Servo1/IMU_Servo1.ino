@@ -36,29 +36,30 @@ void setup() {
 }
 
 void loop() {
-  float gyro[3]; //[roll,pirch,yaw]  
+  float gyro[6]; //[roll,pirch,yaw,x_acc,y_acc_z_acc]
   int vAngle,hAngle;
   
   //read IMU values [roll,pirch,yaw]  
-  cansatIMU.read(gyro);
-  Serial.print("gyro roll/yaw\t");      
-  Serial.print(gyro[0]);
-  Serial.print('\t');
-  Serial.println(gyro[2]);
+  if(cansatIMU.read(gyro,3){
+    Serial.print("gyro roll/yaw\t");      
+    Serial.print(gyro[0]);
+    Serial.print('\t');
+    Serial.println(gyro[2]);
 
-  // roll value control vertical servo
-  // servo range is 0~180 degree, so keep 90 degree as refernce position
-  // if roll is zero, it means x axis' rotation angle of cansat is zero 
-  // then vAngle is 90 degree which means vertical servo stand up and face to front
-  // if roll is negative value, it means cansat rotate to face down
-  // then vAgnle will be below 90 degree and rotate backward
-  // which means vertical servo keep to face to front regardless of cansat roll rotation
-  vAngle=gyro[0]+90;  // 90 is vertical offset for servo 
-  // yaw value control horizontal servo
-  hAngle=gyro[2]+90;  // 90 is horizontal offset for servo 
+    // roll value control vertical servo
+    // servo range is 0~180 degree, so keep 90 degree as refernce position
+    // if roll is zero, it means x axis' rotation angle of cansat is zero 
+    // then vAngle is 90 degree which means vertical servo stand up and face to front
+    // if roll is negative value, it means cansat rotate to face down
+    // then vAgnle will be below 90 degree and rotate backward
+    // which means vertical servo keep to face to front regardless of cansat roll rotation
+    vAngle=gyro[0]+90;  // 90 is vertical offset for servo 
+    // yaw value control horizontal servo
+    hAngle=gyro[2]+90;  // 90 is horizontal offset for servo 
 
-  vServo.write(vAngle);
-  hServo.write(hAngle);
+    vServo.write(vAngle);
+    hServo.write(hAngle);
+  }
   
 
 }
