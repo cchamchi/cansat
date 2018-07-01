@@ -42,12 +42,16 @@ void CansatSystemInit()
   DDRE  =0xFF; // 1110 0010 : OUT for 1 Read for 0
 
   // Timer 설정 부분
-  // Timer :: for 1ms
+
   TIMSK = (1<<TOIE0) ;
-  TCNT0 = 0 ;
-  TCCR0 = 5 ; // 1 , 2=/8, 3 =/64 , 4 =/256 5 =/1024
+  //TCNT0 = 255-108 ;
+  TCNT0=0;
+  TCCR0 = 4 ; // 1 , 2=/8, 3 =/64 , 4 =/256 5 =/1024
 //  TCCR0 = 3 ; // 1 , 2=/8, 3 =/64 , 4 =/256 5 =/1024
 
+
   DDRD = 0xFF ; // 양방향
+
+  sei();
 
 }
