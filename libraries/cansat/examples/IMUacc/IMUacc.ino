@@ -22,7 +22,7 @@ float gyroacc[6]; //[roll,pirch,yaw,x,y,z]
 void loop() {
   // put your main code here, to run repeatedly:
 
-  if(cansatIMU.read(gyroacc)){      
+  if(cansatIMU.read(gyroacc,6)){      
 
    float acc,x,y,z;
    x=gyroacc[3];
@@ -33,7 +33,7 @@ void loop() {
    Serial.println(acc);
 
   }
-    delay(20);
+    
     
 }
 
