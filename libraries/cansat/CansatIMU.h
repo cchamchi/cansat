@@ -53,7 +53,7 @@
          delay(3);
          int rbytes=this->stream.available();
          memset(_imu_data, NULL, sizeof(_imu_data));
-         if(rbytes>62){
+         if(rbytes>62){ // Some serial datas conficted, select only IMU data with size
            for(int n=0;n<rbytes;n++){
              this->stream.read((_imu_data+buf_cnt),1);
              if(_imu_data[buf_cnt]==0x0a){ //end of string
