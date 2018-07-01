@@ -29,7 +29,7 @@
 
  #define RxMode_IMU_PORT    0x02  // 0100 0020 = 2
 
- #define IMU_DATA_SIZE 60
+ #define IMU_DATA_SIZE 64
  template <class T>
  class CansatIMU
      : public CansatTransportSerial<T>
@@ -45,15 +45,35 @@
      void begin() {
          this->stream.begin(115200);
      }
-     bool read(float *buf){
+     bool read(float *buf,int num_items){
+         uint8_t buf_cnt=0;
+         char *addr;
+         bool result=false;
          this->stream.RxModePortSet(RxMode_IMU_PORT);
-         if(this->stream.available()){
-             this->stream.read(_imu_data,IMU_DATA_SIZE);
-             parsingAccelgyro(buf);
-             return true;
-         }else{
-           return false;
+         delay(3);
+         int rbytes=this->stream.available();
+         memset(_imu_data, NULL, sizeof(_imu_data));
+         if(rbytes>62){
+           for(int n=0;n<rbytes;n++){
+             this->stream.read((_imu_data+buf_cnt),1);
+             if(_imu_data[buf_cnt]==0x0a){ //end of string
+               addr=strtok(_imu_data,",");
+               for(int i=0;i<num_items;i++){
+                 buf[i]=atof(addr);
+                 addr=strtok(NULL,",");
+               }
+               result= true;
+             }else if(_imu_data[buf_cnt]=='*'){
+               buf_cnt=-1;
+             }
+            buf_cnt++;
+            if(buf_cnt>=IMU_DATA_SIZE)buf_cnt=0;
+           }
+           //Serial.print("IMU_buff ");
+           //Serial.println(_imu_data);
          }
+
+         return result;
      }
 
      int connected() { return this->conn && this->stream; }
@@ -76,7 +96,7 @@
        }
      }
 
-     char	_imu_data[IMU_DATA_SIZE];;
+     char	_imu_data[IMU_DATA_SIZE];
      size_t	_buff_size=IMU_DATA_SIZE;
  };
 

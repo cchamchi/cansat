@@ -35,26 +35,27 @@ void setup() {
 }
 
 void loop() {
-  float gyro[3]; //[roll,pirch,yaw]  
+  float gyro[6]; //[[roll,pirch,yaw,x_acc,y_acc_z_acc]
   int vAngle,hAngle;
 
-  //read IMU values [roll,pirch,yaw]
-  cansatIMU.read(gyro);
-  Serial.print("gyro roll/yaw\t");      
-  Serial.print(gyro[0]);
-  Serial.print('\t');
-  Serial.println(gyro[2]);
-  
-  // you can change mapping value for the quick response
-  // I mapped roll(-50~50) to vertial angle(20~130)
-  vAngle=map(gyro[0],-50,50,20,130);
-  // I mapped yaw(-40~40) to horizontal angle(170~10)
-  // You have to face to zero yaw direction..may be a south
-  // watch the serial monitors yaw value
-  hAngle=map(gyro[2],-40,40,170,10);
+    //read IMU values [roll,pirch,yaw]
+    if(cansatIMU.read(gyro,3){
+    Serial.print("gyro roll/yaw\t");      
+    Serial.print(gyro[0]);
+    Serial.print('\t');
+    Serial.println(gyro[2]);
 
-  vServo.write(vAngle);
-  hServo.write(hAngle);
+    // you can change mapping value for the quick response
+    // I mapped roll(-50~50) to vertial angle(20~130)
+    vAngle=map(gyro[0],-50,50,20,130);
+    // I mapped yaw(-40~40) to horizontal angle(170~10)
+    // You have to face to zero yaw direction..may be a south
+    // watch the serial monitors yaw value
+    hAngle=map(gyro[2],-40,40,170,10);
+
+    vServo.write(vAngle);
+    hServo.write(hAngle);
+  }
   
 
 }

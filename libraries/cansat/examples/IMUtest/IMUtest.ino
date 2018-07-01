@@ -18,11 +18,11 @@ void setup() {
  
 }
 
-float gyro[3]; //[roll,pirch,yaw]
+float gyro[6]; //[roll,pirch,yaw,x_acc,y_acc_z_acc]
 void loop() {
   // put your main code here, to run repeatedly:
 
-  cansatIMU.read(gyro);
+  if(cansatIMU.read(gyro,3)){ // read 3 items
 
   
    #ifdef OUTPUT_SERIAL_MONITOR   
@@ -39,9 +39,8 @@ void loop() {
       Serial.print(gyro[1]); //pitch,theta
       Serial.print(" ");
       Serial.println(gyro[2]); //yaw,psi
-   #endif        
-    
-    delay(20);
+   #endif    
+  }   
     
 }
 
