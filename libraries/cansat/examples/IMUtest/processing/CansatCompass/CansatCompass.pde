@@ -26,7 +26,7 @@ float Psi;
 
 void setup() 
 { 
-  size(1400,700,OPENGL); 
+  size(1400,700); 
   rectMode(CENTER); 
   smooth(); 
   strokeCap(SQUARE);//Optional 
