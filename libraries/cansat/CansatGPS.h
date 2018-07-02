@@ -53,16 +53,22 @@ class CansatGPS
          char c;
          this->stream.RxModePortSet(RxMode_GPS_PORT);
          numc = this->stream.available();
-         while (numc--) {
-             this->stream.read(&c,1); //read 1 Byte
-             if (decode(c)) {
-                 parsed = true;
-             }
-         }
+           while (numc--) {
+               this->stream.read(&c,1); //read 1 Byte
+               if (decode(c)) {
+                   parsed = true;
+               }
+           }
          return parsed;
 
      }
-
+     void rx_empty(void)
+     {
+         char a;
+         while(this->stream.available() > 0) {
+             this->stream.read(&a,1);
+         }
+     }
      int connected() { return this->conn && this->stream; }
      int available() { return this->stream.available(); }
      // ground speed in m/s

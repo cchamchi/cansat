@@ -41,41 +41,57 @@
 
      void begin(uint32_t baud) {
          this->stream.begin(baud);
+         buf_offset=0;
+         _data_start=false;
      }
      void begin() {
          this->stream.begin(115200);
+         buf_offset=0;
+         _data_start=false;
      }
      bool read(float *buf,int num_items){
-         uint8_t buf_cnt=0;
+
+
          char *addr;
-         bool result=false;
+         char c;
+         bool valid_data=false;
          this->stream.RxModePortSet(RxMode_IMU_PORT);
-         delay(3);
-         int rbytes=this->stream.available();
-         memset(_imu_data, NULL, sizeof(_imu_data));
-         if(rbytes>62){ // Some serial datas conficted, select only IMU data with size
-           for(int n=0;n<rbytes;n++){
-             this->stream.read((_imu_data+buf_cnt),1);
-             if(_imu_data[buf_cnt]==0x0a){ //end of string
+
+         int16_t rbytes=this->stream.available();
+         while(rbytes--){
+           this->stream.read((_imu_data+buf_offset),1);
+           if(_imu_data[buf_offset]=='\n'){ //LF end of string
+             if (_data_start){
                addr=strtok(_imu_data,",");
                for(int i=0;i<num_items;i++){
                  buf[i]=atof(addr);
                  addr=strtok(NULL,",");
                }
-               result= true;
-             }else if(_imu_data[buf_cnt]=='*'){
-               buf_cnt=-1;
+               _data_start=false;
+               valid_data=true;
              }
-            buf_cnt++;
-            if(buf_cnt>=IMU_DATA_SIZE)buf_cnt=0;
+           }else if(_imu_data[buf_offset]=='*'){ //start of string
+             buf_offset=-1;
+             _data_start=true;
            }
-           //Serial.print("IMU_buff ");
-           //Serial.println(_imu_data);
+           // ordinary characters
+           buf_offset++;
+           if(buf_offset>=IMU_DATA_SIZE)buf_offset=0;
          }
 
-         return result;
+
+         return valid_data;
+
      }
 
+
+     void rx_empty(void)
+     {
+         char a;
+         while(this->stream.available() > 0) {
+             this->stream.read(&a,1);
+         }
+     }
      int connected() { return this->conn && this->stream; }
      int available() { return this->stream.available(); }
    private:
@@ -98,6 +114,8 @@
 
      char	_imu_data[IMU_DATA_SIZE];
      size_t	_buff_size=IMU_DATA_SIZE;
+     uint8_t buf_offset;
+     bool _data_start;
  };
 
 
