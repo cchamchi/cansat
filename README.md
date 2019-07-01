@@ -2,6 +2,8 @@
 
 # To add package
 
+https://github.com/cchamchi/cansat/wiki/Cansat-Package-install
+
 arduino/ 설정 / 추가적인 보드매니저 URLs   
 https://github.com/cchamchi/arduinoPackages/releases/download/index/package_cansat_USB_Atmega128_index.json
 
