@@ -11,6 +11,12 @@ To make package index json
 
 https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.6.x-package_index.json-format-specification
 
+
+# 자세한 설명
+
+https://github.com/cchamchi/cansat.wiki.git
+
+
 #Checksum at MacOSX
 
 shasum -a 256 filename
