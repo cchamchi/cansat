@@ -2,13 +2,16 @@
 
 # To add package
 
-아래를 클릭하시면 자세한 설명 및 모듈별 테스트 방법이 있습니다. 
+아래를 클릭하시면 자세한 설명 및 모듈별 테스트 방법이 있습니다. 동작이 안되거나 문의하실께 있으면
+
+cchamchi@naver.com  이나 dwlee93@gmail.com 으로 문의 주세요
 
 https://github.com/cchamchi/cansat/wiki/Cansat-Package-install
 
 
+본 코드는 보드매니저를 통해 추가하는 코드입니다.(라이브러리 추가가 아님).. 해당 코드는 library 폴더에 생성되지 않고 아두이노 프로그램 내부에 설치됩니다. 
 
-
+코드 수정이 필요하시면 제게 연락주세요. 감사합니다. 
 
 
 
